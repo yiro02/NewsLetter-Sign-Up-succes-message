@@ -29,7 +29,7 @@ form.addEventListener('submit', async function(event) {
         body: JSON.stringify({ email: emailValue })
       });
 
-      const data = await response.json();  file:///c:/Users/DELL/Documents/Proyectos%20de%20React/Newsletter%20Sign-up%20Form%20With%20Success%20Message/Index-1.html      file:///c:/Users/DELL/Documents/Proyectos%20de%20React/Newsletter%20Sign-up%20Form%20With%20Success%20Message/Index-1.html;
+      const data = await response.json();  //file:///c:/Users/DELL/Documents/Proyectos%20de%20React/Newsletter%20Sign-up%20Form%20With%20Success%20Message/Index-1.html      file:///c:/Users/DELL/Documents/Proyectos%20de%20React/Newsletter%20Sign-up%20Form%20With%20Success%20Message/Index-1.html;
 
       if (data.success) {
         // Actualizar el email en el mensaje de confirmación
