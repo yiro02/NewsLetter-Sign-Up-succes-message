@@ -1,4 +1,3 @@
-
 const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
@@ -12,26 +11,17 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('.'));
 
-// Configurar transporter de nodemailer para Gmail
-const hasOAuth2Config = process.env.EMAIL_OAUTH_CLIENT_ID && process.env.EMAIL_OAUTH_CLIENT_SECRET && process.env.EMAIL_OAUTH_REFRESH_TOKEN;
-
+// Configurar transporter de nodemailer
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'smtp.gmail.com',
-  port: process.env.SMTP_PORT || 587,
-  secure: false,
+  host: 'smtp-mail.outlook.com',
+  port: 587,
+  secure: false, // usa STARTTLS en lugar de SSL directo
   requireTLS: true,
-  auth: hasOAuth2Config ? {
-    type: 'OAuth2',
-    user: process.env.SMTP_EMAIL,
-    clientId: process.env.EMAIL_OAUTH_CLIENT_ID,
-    clientSecret: process.env.EMAIL_OAUTH_CLIENT_SECRET,
-    refreshToken: process.env.EMAIL_OAUTH_REFRESH_TOKEN
-  } : {
-    user: process.env.SMTP_EMAIL,
-    pass: process.env.SMTP_PASSWORD
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
   }
 });
-
 
 transporter.verify((error, success) => {
   if (error) {
@@ -50,6 +40,7 @@ app.post('/api/subscribe', async (req, res) => {
     if (!emailRegex.test(email)) {
       return res.status(400).json({ success: false, message: 'Email inválido' });
     }
+
     // Opciones del email
     const mailOptions = {
       from: process.env.EMAIL_USER,
