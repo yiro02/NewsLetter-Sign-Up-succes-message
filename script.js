@@ -21,7 +21,7 @@ form.addEventListener('submit', async function(event) {
     
     try {
       // Enviar email al servidor
-      const response = await fetch('http://localhost:3000/api/subscribe', {
+      const response = await fetch('/api/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -29,7 +29,7 @@ form.addEventListener('submit', async function(event) {
         body: JSON.stringify({ email: emailValue })
       });
 
-      const data = await response.json();  file:///c:/Users/DELL/Documents/Proyectos%20de%20React/Newsletter%20Sign-up%20Form%20With%20Success%20Message/Index-1.html      file:///c:/Users/DELL/Documents/Proyectos%20de%20React/Newsletter%20Sign-up%20Form%20With%20Success%20Message/Index-1.html;
+      const data = await response.json();
 
       if (data.success) {
         // Actualizar el email en el mensaje de confirmación
@@ -43,8 +43,8 @@ form.addEventListener('submit', async function(event) {
         errorMessage.textContent = data.message || 'Error al suscribirse';
       }
     } catch (error) {
-      console.error('Error:', error);console.log("");
-      errorMessage.textContent = 'Error de conexión. Verifica que el servidor esté activo en http://localhost:3000';
+      console.error('Error:', error);
+      errorMessage.textContent = 'Error de conexión. Inténtalo de nuevo más tarde.';
     }
   }
 });
