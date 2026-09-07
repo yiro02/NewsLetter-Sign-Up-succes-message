@@ -1,9 +1,0 @@
-.env
-.env.local
-/node_modules
-package-lock.json
-*.log
-.vscode/
-env
-.env
-.env.example
