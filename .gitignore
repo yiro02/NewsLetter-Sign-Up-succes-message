@@ -1,0 +1,8 @@
+.env
+.env.local
+/node_modules
+package-lock.json
+*.log
+.vscode/
+# Local Netlify folder
+.netlify
